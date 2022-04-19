@@ -9,5 +9,7 @@ public class SpringDemo {
         User user = context.getBean("user", User.class);
         user.test();
 
+//        test git commit
+
     }
 }
