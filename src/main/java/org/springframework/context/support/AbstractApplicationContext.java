@@ -564,9 +564,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
 				// Invoke factory processors registered as beans in the context.
+				/** 执行  BeanFactoryPostProcessor  接口的实现类 以及  BeanDefinitionRegistryPostProcessor 的实现类*/
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				/** 向beanFactory 中添加context and addBeanPostProcessor*/
 				registerBeanPostProcessors(beanFactory);
 				beanPostProcess.end();
 
@@ -574,12 +576,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				/** 初始化事件多播器*/
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				/** 留给子类实现  初始化特定上下文子类中的其他特殊bean*/
 				onRefresh();
 
 				// Check for listener beans and register them.
+				/** 向事件多播器 applicationEventMulticaster  中添加监听器*/
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
